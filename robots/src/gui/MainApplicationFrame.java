@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MainApplicationFrame extends JFrame {
     private final JDesktopPane desktopPane = new JDesktopPane();
@@ -13,6 +15,8 @@ public class MainApplicationFrame extends JFrame {
     public MainApplicationFrame() {
         //Make the big window be indented 50 pixels from each edge
         //of the screen.
+        new LocaleChanger("ru", "RU").changeUiLocale();
+
         int inset = 50;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,

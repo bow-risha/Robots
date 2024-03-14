@@ -5,8 +5,6 @@ import javax.swing.*;
 public class ExitHandler {
 
     public void handle() {
-        UIManager.put("OptionPane.yesButtonText", "Да");
-        UIManager.put("OptionPane.noButtonText", "Нет");
         int result = JOptionPane.showConfirmDialog(
                 null,
                 "Вы уверенны что хотите выйти?",
