@@ -1,16 +1,17 @@
 package gui;
 
 import log.Logger;
+import saver.PaneSaver;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class MainApplicationFrame extends JFrame {
     private final JDesktopPane desktopPane = new JDesktopPane();
+    private final PaneSaver paneSaver =new PaneSaver();
+
 
     public MainApplicationFrame() {
         //Make the big window be indented 50 pixels from each edge
@@ -32,7 +33,7 @@ public class MainApplicationFrame extends JFrame {
         gameWindow.setSize(400, 400);
         addWindow(gameWindow);
 
-        MenuBarGenerator menuGenerator = new MenuBarGenerator();
+        MenuBarGenerator menuGenerator = new MenuBarGenerator(e-> paneSaver.SavePaneState(desktopPane));
         setJMenuBar(menuGenerator.generateMenuBar(this));
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -41,6 +42,7 @@ public class MainApplicationFrame extends JFrame {
                 new ExitHandler().handle();
             }
         });
+        paneSaver.ApplySavedState(this.desktopPane);
     }
 
     protected LogWindow createLogWindow() {

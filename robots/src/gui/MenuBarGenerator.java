@@ -3,9 +3,15 @@ package gui;
 import log.Logger;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 class MenuBarGenerator {
+
+    ActionListener exitListener;
+    MenuBarGenerator(ActionListener exitListener){
+        this.exitListener=exitListener;
+    }
 
     JMenuBar generateMenuBar(JFrame frame) {
         JMenuBar menuBar = new JMenuBar();
@@ -60,6 +66,7 @@ class MenuBarGenerator {
         };
 
         exitItem.addActionListener(e -> new ExitHandler().handle());
+        exitItem.addActionListener(exitListener);
         exitMenu.add(exitItem);
         return exitMenu;
     }
